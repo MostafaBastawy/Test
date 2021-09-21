@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebasetestapp/cubit/states.dart';
+import 'package:firebasetestapp/models/product_model.dart';
 import 'package:firebasetestapp/models/user_model.dart';
 import 'package:firebasetestapp/screens/home_screen.dart';
 import 'package:firebasetestapp/shared/cache_helper.dart';
@@ -170,6 +171,19 @@ class AppCubit extends Cubit<AppStates> {
         .then((value) {})
         .catchError((error) {
       emit(AppUpdateUserDataErrorState(error.toString()));
+    });
+  }
+
+  List<ProductModel> products = [];
+
+  void getProducts() {
+    FirebaseFirestore.instance.collection('products').get().then((value) {
+      value.docs.forEach((element) {
+        products.add(ProductModel.fromJson(element.data()));
+      });
+      emit(AppGetProductsDataSuccessState());
+    }).catchError((error) {
+      emit(AppGetProductsDataErrorState(error.toString()));
     });
   }
 }

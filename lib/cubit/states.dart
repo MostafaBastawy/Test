@@ -61,3 +61,11 @@ class AppSignOutErrorState extends AppStates {
 
   AppSignOutErrorState(this.error);
 }
+
+class AppGetProductsDataSuccessState extends AppStates {}
+
+class AppGetProductsDataErrorState extends AppStates {
+  final String error;
+
+  AppGetProductsDataErrorState(this.error);
+}
