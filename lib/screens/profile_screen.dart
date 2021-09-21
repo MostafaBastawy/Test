@@ -11,7 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ProfileScreen extends StatelessWidget {
   var nameController = TextEditingController();
   var phoneController = TextEditingController();
-  var nnameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +122,7 @@ class ProfileScreen extends StatelessWidget {
                         email: cubit.userModel!.email!,
                         profileImageUrl: cubit.profileImage,
                       );
-                      navigateAndFinish(context, HomeScreen());
+                      navigateAndFinish(context, const HomeScreen());
                     },
                     text: 'UPDATE',
                   ),
