@@ -3,10 +3,13 @@ import 'package:firebasetestapp/screens/home_screen.dart';
 import 'package:firebasetestapp/screens/register_screen.dart';
 import 'package:firebasetestapp/shared/cache_helper.dart';
 import 'package:firebasetestapp/shared/components.dart';
+import 'package:firebasetestapp/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebasetestapp/cubit/cubit.dart';
 import 'package:firebasetestapp/cubit/states.dart';
+import 'package:easy_localization/easy_localization.dart';
+import '../translations/locale_keys.g.dart';
 
 class LoginScreen extends StatelessWidget {
   var emailController = TextEditingController();
@@ -27,8 +30,8 @@ class LoginScreen extends StatelessWidget {
         AppCubit cubit = AppCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: const Text(
-              'Test App',
+            title: Text(
+              LocaleKeys.appName.tr(),
             ),
           ),
           body: Center(
@@ -41,7 +44,7 @@ class LoginScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'please login to enjoy our hot offers',
+                        LocaleKeys.loginMessage.tr(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0,
@@ -55,13 +58,13 @@ class LoginScreen extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                         validator: (String? value) {
                           if (value!.isEmpty) {
-                            return 'email address cant be empty';
+                            return LocaleKeys.emailVerify.tr();
                           }
                         },
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Email Address',
-                          prefixIcon: Icon(Icons.email_outlined),
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: LocaleKeys.emailLabel.tr(),
+                          prefixIcon: const Icon(Icons.email_outlined),
                         ),
                         onTap: () {},
                         onChanged: (value) {},
@@ -75,13 +78,13 @@ class LoginScreen extends StatelessWidget {
                         keyboardType: TextInputType.visiblePassword,
                         validator: (String? value) {
                           if (value!.isEmpty) {
-                            return 'password is too short';
+                            return LocaleKeys.passwordVerify.tr();
                           }
                         },
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Password',
-                          prefixIcon: Icon(Icons.lock_outline),
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: LocaleKeys.passwordLabel.tr(),
+                          prefixIcon: const Icon(Icons.lock_outline),
                         ),
                         onTap: () {},
                         onChanged: (value) {},
@@ -98,16 +101,16 @@ class LoginScreen extends StatelessWidget {
                             );
                           }
                         },
-                        text: 'LOGIN',
+                        text: LocaleKeys.loginButton.tr(),
                       ),
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            'Don\'t have an account?',
-                            style: TextStyle(
+                          Text(
+                            LocaleKeys.loginDontHaveAnAccount.tr(),
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 17.0,
                               color: Colors.black,
@@ -118,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                               navigateTo(
                                   context: context, widget: RegisterScreen());
                             },
-                            child: const Text('REGISTER'),
+                            child: Text(LocaleKeys.registerButton.tr()),
                           ),
                         ],
                       ),

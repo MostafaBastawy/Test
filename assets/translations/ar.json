@@ -1,0 +1,23 @@
+{
+  "products":"المنتجات",
+  "appName":"اسم التطبيق",
+  "loginMessage":"الرجاء تسجيل الدخول للاستمتاع بعروضنا المميزه",
+  "emailVerify":"برجاء التحقق من البريد الالكتروني",
+  "emailLabel":"البريد الالكتروني",
+  "passwordVerify":"برجاء التحقق من كلمه المرور",
+  "passwordLabel":"كلمه المرور",
+  "loginButton":"تسجيل الدخول",
+  "loginDontHaveAnAccount":"هل لا تمتلك حساب ؟",
+  "registerButton":"التسجيل",
+  "registerMessage":"الرجاء التسجيل للاستمتاع بعروضنا الساخنة",
+  "nameVerify":"برجاء التحقق من الاسم",
+  "nameLabel":"الاسم",
+  "phoneVerify":"برحاء التحقق من رقم التليفون",
+  "phoneLabel":"رقم التليفون",
+  "alreadyHaveAnAccount":"هل لديك حساب ؟",
+  "profile":"الصفحه الشخصية",
+  "update":"تحديث",
+  "logout":"تسجيل الخروج"
+
+
+}

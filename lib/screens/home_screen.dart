@@ -3,8 +3,11 @@ import 'package:firebasetestapp/cubit/states.dart';
 import 'package:firebasetestapp/models/product_model.dart';
 import 'package:firebasetestapp/screens/profile_screen.dart';
 import 'package:firebasetestapp/shared/components.dart';
+import 'package:firebasetestapp/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
+import '../translations/locale_keys.g.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,7 +24,7 @@ class HomeScreen extends StatelessWidget {
         AppCubit cubit = AppCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Products'),
+            title: Text(LocaleKeys.products.tr()),
             actions: [
               Padding(
                 padding: const EdgeInsetsDirectional.only(end: 20.0),

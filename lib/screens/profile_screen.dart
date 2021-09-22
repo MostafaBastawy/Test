@@ -7,6 +7,8 @@ import 'package:firebasetestapp/shared/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
+import '../translations/locale_keys.g.dart';
 
 class ProfileScreen extends StatelessWidget {
   var nameController = TextEditingController();
@@ -26,13 +28,9 @@ class ProfileScreen extends StatelessWidget {
         }
       },
       builder: (BuildContext context, Object? state) {
-        // UserDataModel userModel = cubit.userModel!;
-        // nameController.text = userModel.name!;
-        // phoneController.text = userModel.phone!;
-
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Profile'),
+            title: Text(LocaleKeys.profile.tr()),
           ),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -83,13 +81,13 @@ class ProfileScreen extends StatelessWidget {
                     keyboardType: TextInputType.name,
                     validator: (String? value) {
                       if (value!.isEmpty) {
-                        return 'name cant be empty';
+                        return LocaleKeys.nameVerify.tr();
                       }
                     },
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Full Name',
-                      prefixIcon: Icon(Icons.person),
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: LocaleKeys.nameLabel.tr(),
+                      prefixIcon: const Icon(Icons.person),
                     ),
                     onTap: () {},
                     onChanged: (String value) {},
@@ -101,13 +99,13 @@ class ProfileScreen extends StatelessWidget {
                     keyboardType: TextInputType.phone,
                     validator: (String? value) {
                       if (value!.isEmpty) {
-                        return 'phone number cant be empty';
+                        return LocaleKeys.phoneVerify.tr();
                       }
                     },
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Phone Number',
-                      prefixIcon: Icon(Icons.phone),
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: LocaleKeys.phoneLabel.tr(),
+                      prefixIcon: const Icon(Icons.phone),
                     ),
                     onTap: () {},
                     onChanged: (value) {},
@@ -124,14 +122,14 @@ class ProfileScreen extends StatelessWidget {
                       );
                       navigateAndFinish(context, const HomeScreen());
                     },
-                    text: 'UPDATE',
+                    text: LocaleKeys.update.tr(),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   defaultButton(
                     function: () {
                       cubit.signOut();
                     },
-                    text: 'LOGOUT',
+                    text: LocaleKeys.logout.tr(),
                   ),
                 ],
               ),

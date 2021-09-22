@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebasetestapp/cubit/cubit.dart';
 import 'package:firebasetestapp/cubit/states.dart';
+import 'package:easy_localization/easy_localization.dart';
+import '../translations/locale_keys.g.dart';
 
 class RegisterScreen extends StatelessWidget {
   var emailController = TextEditingController();
@@ -25,8 +27,8 @@ class RegisterScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: const Text(
-              'Test App',
+            title: Text(
+              LocaleKeys.appName.tr(),
             ),
           ),
           body: Center(
@@ -39,7 +41,7 @@ class RegisterScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'please register to enjoy our hot offers',
+                        LocaleKeys.registerMessage.tr(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0,
@@ -53,13 +55,13 @@ class RegisterScreen extends StatelessWidget {
                         keyboardType: TextInputType.name,
                         validator: (String? value) {
                           if (value!.isEmpty) {
-                            return 'name cant be empty';
+                            return LocaleKeys.nameVerify.tr();
                           }
                         },
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Full Name',
-                          prefixIcon: Icon(Icons.person),
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: LocaleKeys.nameLabel.tr(),
+                          prefixIcon: const Icon(Icons.person),
                         ),
                         onTap: () {},
                         onChanged: (value) {},
@@ -72,13 +74,13 @@ class RegisterScreen extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                         validator: (String? value) {
                           if (value!.isEmpty) {
-                            return 'email address cant be empty';
+                            return LocaleKeys.emailVerify.tr();
                           }
                         },
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Email Address',
-                          prefixIcon: Icon(Icons.email_outlined),
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: LocaleKeys.emailLabel.tr(),
+                          prefixIcon: const Icon(Icons.email_outlined),
                         ),
                         onTap: () {},
                         onChanged: (value) {},
@@ -92,13 +94,13 @@ class RegisterScreen extends StatelessWidget {
                         keyboardType: TextInputType.visiblePassword,
                         validator: (String? value) {
                           if (value!.isEmpty) {
-                            return 'password is too short';
+                            return LocaleKeys.passwordVerify.tr();
                           }
                         },
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Password',
-                          prefixIcon: Icon(Icons.lock_outline),
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: LocaleKeys.passwordLabel.tr(),
+                          prefixIcon: const Icon(Icons.lock_outline),
                         ),
                         onTap: () {},
                         onChanged: (value) {},
@@ -111,13 +113,13 @@ class RegisterScreen extends StatelessWidget {
                         keyboardType: TextInputType.phone,
                         validator: (String? value) {
                           if (value!.isEmpty) {
-                            return 'phone number cant be empty';
+                            return LocaleKeys.phoneVerify.tr();
                           }
                         },
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Phone Number',
-                          prefixIcon: Icon(Icons.phone),
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: LocaleKeys.phoneLabel.tr(),
+                          prefixIcon: const Icon(Icons.phone),
                         ),
                         onTap: () {},
                         onChanged: (value) {},
@@ -136,16 +138,16 @@ class RegisterScreen extends StatelessWidget {
                             );
                           }
                         },
-                        text: 'REGISTER',
+                        text: LocaleKeys.registerButton.tr(),
                       ),
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            'already have an account?',
-                            style: TextStyle(
+                          Text(
+                            LocaleKeys.alreadyHaveAnAccount.tr(),
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 17.0,
                               color: Colors.black,
@@ -156,7 +158,7 @@ class RegisterScreen extends StatelessWidget {
                               navigateTo(
                                   context: context, widget: LoginScreen());
                             },
-                            child: const Text('LOGIN'),
+                            child: Text(LocaleKeys.loginButton.tr()),
                           ),
                         ],
                       ),

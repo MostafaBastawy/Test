@@ -1,0 +1,23 @@
+{
+  "products":"Products",
+  "appName":"App Name",
+  "loginMessage":"please login to enjoy our hot offers",
+  "emailVerify":"email address cant be empty",
+  "emailLabel":"Email Address",
+  "passwordVerify":"password is too short",
+  "passwordLabel":"Password",
+  "loginButton":"LOGIN",
+  "loginDontHaveAnAccount":"Don\\'t have an account?",
+  "registerButton":"REGISTER",
+  "registerMessage":"please register to enjoy our hot offers",
+  "nameVerify":"name cant be empty",
+  "nameLabel":"Full Name",
+  "phoneVerify":"phone number cant be empty",
+  "phoneLabel":"Phone Number",
+  "alreadyHaveAnAccount":"already have an account?",
+  "profile":"Profile",
+  "update":"UPDATE",
+  "logout":"LOGOUT"
+
+
+}

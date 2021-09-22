@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebasetestapp/cubit/bloc_observing.dart';
 import 'package:firebasetestapp/cubit/cubit.dart';
@@ -7,9 +8,12 @@ import 'package:firebasetestapp/screens/login_screen.dart';
 import 'package:firebasetestapp/shared/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'generated/codegen_loader.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
   await CacheHelper.init();
@@ -20,9 +24,18 @@ Future<void> main() async {
   } else {
     startScreen = LoginScreen();
   }
-  runApp(MyApp(
-    startScreen: startScreen,
-  ));
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale('en'), Locale('ar')],
+      path:
+          'assets/translations', // <-- change the path of the translation files
+      fallbackLocale: Locale('en'),
+      assetLoader: CodegenLoader(),
+      child: MyApp(
+        startScreen: startScreen,
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -36,9 +49,14 @@ class MyApp extends StatelessWidget {
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (BuildContext context, state) {},
         builder: (BuildContext context, Object? state) {
+          print(context.locale.toString());
+
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             themeMode: ThemeMode.light,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
             home: startScreen,
           );
         },
