@@ -6,10 +6,11 @@ import 'package:firebasetestapp/cubit/states.dart';
 import 'package:firebasetestapp/screens/home_screen.dart';
 import 'package:firebasetestapp/screens/login_screen.dart';
 import 'package:firebasetestapp/shared/cache_helper.dart';
+import 'package:firebasetestapp/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'generated/codegen_loader.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,12 +19,15 @@ Future<void> main() async {
   Bloc.observer = MyBlocObserver();
   await CacheHelper.init();
   String uId = CacheHelper.getData(key: 'uId') ?? '';
+  language = CacheHelper.getData(key: 'language') ?? 'products';
+
   Widget startScreen;
   if (uId.isNotEmpty) {
     startScreen = HomeScreen();
   } else {
     startScreen = LoginScreen();
   }
+
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],
@@ -45,11 +49,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => AppCubit()..getProducts(),
+      create: (BuildContext context) =>
+          AppCubit()..getProducts(productLanguage: language),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (BuildContext context, state) {},
         builder: (BuildContext context, Object? state) {
-          print(context.locale.toString());
+          print(context.locale.languageCode);
+          AppCubit cubit = AppCubit.get(context);
 
           return MaterialApp(
             debugShowCheckedModeBanner: false,

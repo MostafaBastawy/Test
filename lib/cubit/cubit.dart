@@ -1,14 +1,13 @@
 import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebasetestapp/cubit/states.dart';
 import 'package:firebasetestapp/models/product_model.dart';
 import 'package:firebasetestapp/models/user_model.dart';
-import 'package:firebasetestapp/screens/home_screen.dart';
 import 'package:firebasetestapp/shared/cache_helper.dart';
-import 'package:firebasetestapp/shared/components.dart';
 import 'package:firebasetestapp/shared/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -176,8 +175,11 @@ class AppCubit extends Cubit<AppStates> {
 
   List<ProductModel> products = [];
 
-  void getProducts() {
-    FirebaseFirestore.instance.collection('products').get().then((value) {
+  void getProducts({
+    String productLanguage = 'products',
+  }) {
+    products = [];
+    FirebaseFirestore.instance.collection(productLanguage).get().then((value) {
       value.docs.forEach((element) {
         products.add(ProductModel.fromJson(element.data()));
       });

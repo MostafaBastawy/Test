@@ -1,12 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebasetestapp/cubit/cubit.dart';
 import 'package:firebasetestapp/cubit/states.dart';
 import 'package:firebasetestapp/models/product_model.dart';
 import 'package:firebasetestapp/screens/profile_screen.dart';
+import 'package:firebasetestapp/shared/cache_helper.dart';
 import 'package:firebasetestapp/shared/components.dart';
 import 'package:firebasetestapp/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
+
 import '../translations/locale_keys.g.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,6 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppCubit cubit = AppCubit.get(context);
     return BlocConsumer<AppCubit, AppStates>(
       listener: (BuildContext context, state) {
         if (state is AppGetUserDataSuccessState) {
@@ -26,16 +29,42 @@ class HomeScreen extends StatelessWidget {
           appBar: AppBar(
             title: Text(LocaleKeys.products.tr()),
             actions: [
-              Padding(
-                padding: const EdgeInsetsDirectional.only(end: 20.0),
-                child: IconButton(
-                  onPressed: () {
-                    cubit.getUserData();
-                  },
-                  icon: const Icon(
-                    Icons.person_pin,
-                    size: 35.0,
+              TextButton(
+                child: const Text(
+                  'AR',
+                  style: TextStyle(
+                    color: Colors.white,
                   ),
+                ),
+                onPressed: () async {
+                  cubit.getProducts(productLanguage: 'arabic products');
+                  CacheHelper.sharedPreferences!
+                      .setString('language', 'arabic products');
+                  await context.setLocale(Locale('ar'));
+                },
+              ),
+              TextButton(
+                child: const Text(
+                  'EN',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () async {
+                  cubit.getProducts(productLanguage: 'products');
+                  CacheHelper.sharedPreferences!
+                      .setString('language', 'products');
+
+                  await context.setLocale(Locale('en'));
+                },
+              ),
+              IconButton(
+                onPressed: () {
+                  cubit.getUserData();
+                },
+                icon: const Icon(
+                  Icons.person_pin,
+                  size: 35.0,
                 ),
               ),
             ],
